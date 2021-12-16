@@ -1,0 +1,5 @@
+version: '3'
+services:
+  web_up:
+    env_file: .env
+    build: .
