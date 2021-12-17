@@ -1,19 +1,21 @@
+# Script that performs 2 checks to validate if website is up
 import requests
 import re
 import os
 
+# Gets site as environment variable
 url = os.environ['URL']
 
  # Checks if URL is valid
 def check_1(url):
-# Regex to check valid URL
+    # Regex to check valid URL
     regex = ("((http|https)://)(www.)?" +
 		    "[a-zA-Z0-9@:%._\\+~#?&//=]" +
 		    "{2,256}\\.[a-z]" +
 		    "{2,6}\\b([-a-zA-Z0-9@:%" +
 		    "._\\+~#?&//=]*)")
 	
-	# Compile the ReGex
+    # Compile the ReGex
     p = re.compile(regex)
 
     if (re.search(p, url)):
@@ -22,7 +24,7 @@ def check_1(url):
         return False
 
 
- # Checks if web URL returns 200 status code to http head request
+# Checks if web URL returns 200 status code to http head request
 def check_2(url):
     try:
         response = requests.head(url)
@@ -42,6 +44,7 @@ def web_ok(url):
     else:
         return "Failure"
 
+# Prints result
 print(web_ok(url))
  
 
